@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom/vitest'
 import { render, screen } from '@testing-library/react'
-import { RouterProvider, createMemoryRouter } from 'react-router-dom'
+import { createMemoryRouter, RouterProvider } from 'react-router-dom'
 
 import { getRouterBasename, routes } from '@/app/router'
 
