@@ -1,0 +1,28 @@
+import '@testing-library/jest-dom/vitest'
+import { render, screen } from '@testing-library/react'
+import { RouterProvider } from 'react-router-dom'
+
+import { createAppRouter } from '@/app/router'
+
+describe('createAppRouter', () => {
+  afterEach(() => {
+    window.history.pushState({}, '', '/')
+  })
+
+  it('matches routes when the app is served from a deployment base path', async () => {
+    window.history.pushState({}, '', '/poc-react-library/')
+
+    const router = createAppRouter('/poc-react-library/')
+    render(<RouterProvider router={router} />)
+
+    expect(
+      await screen.findByText('프론트엔드 학습과 실험을 위한 기본 프로젝트'),
+    ).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: '레이스 컨디션 데모 열기' })).toHaveAttribute(
+      'href',
+      '/poc-react-library/learning/race-condition',
+    )
+
+    router.dispose()
+  })
+})
