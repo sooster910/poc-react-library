@@ -17,8 +17,8 @@ describe('router', () => {
       initialEntries: ['/poc-react-library/learning/race-condition'],
     })
 
-    expect(
-      router.state.matches.some(({ route }) => route.path === 'learning/race-condition'),
-    ).toBe(true)
+    expect(router.state.matches.some(({ route }) => route.path === 'learning/race-condition')).toBe(
+      true,
+    )
   })
 })
