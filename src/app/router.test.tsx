@@ -18,10 +18,7 @@ describe('app router', () => {
       'href',
       '/poc-react-library/learning/race-condition',
     )
-    expect(screen.getByRole('link', { name: 'Home' })).toHaveAttribute(
-      'href',
-      '/poc-react-library/',
-    )
+    expect(screen.getByRole('link', { name: 'Home' })).toHaveAttribute('href', '/poc-react-library')
   })
 
   it('keeps root deployments on the root basename', () => {
