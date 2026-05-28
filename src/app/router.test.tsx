@@ -1,6 +1,6 @@
 import { cleanup, render, screen } from '@testing-library/react'
-import { afterEach, describe, expect, it } from 'vitest'
 import { RouterProvider } from 'react-router-dom'
+import { afterEach, describe, expect, it } from 'vitest'
 
 import { createAppRouter, getRouterBasename } from '@/app/router'
 
@@ -8,9 +8,7 @@ describe('getRouterBasename', () => {
   it('normalizes Vite base paths for React Router', () => {
     expect(getRouterBasename('/')).toBeUndefined()
     expect(getRouterBasename('/poc-react-library/')).toBe('/poc-react-library')
-    expect(getRouterBasename('https://example.com/poc-react-library/')).toBe(
-      '/poc-react-library',
-    )
+    expect(getRouterBasename('https://example.com/poc-react-library/')).toBe('/poc-react-library')
   })
 })
 
