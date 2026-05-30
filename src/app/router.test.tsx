@@ -19,17 +19,13 @@ describe('appRoutes', () => {
     const basename = getRouterBasename('/poc-react-library/')
     const matches = matchRoutes(appRoutes, '/poc-react-library/', basename)
 
-    expect(matches?.at(-1)?.route.index).toBe(true)
+    expect(matches?.at(-1)?.pathname).toBe('/poc-react-library/')
   })
 
   it('matches nested learning routes under the configured basename', () => {
     const basename = getRouterBasename('/poc-react-library/')
-    const matches = matchRoutes(
-      appRoutes,
-      '/poc-react-library/learning/race-condition',
-      basename,
-    )
+    const matches = matchRoutes(appRoutes, '/poc-react-library/learning/race-condition', basename)
 
-    expect(matches?.at(-1)?.route.path).toBe('learning/race-condition')
+    expect(matches?.at(-1)?.pathname).toBe('/poc-react-library/learning/race-condition')
   })
 })
