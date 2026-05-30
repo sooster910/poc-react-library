@@ -1,11 +1,32 @@
-import { createBrowserRouter } from 'react-router-dom'
+import { createBrowserRouter, type RouteObject } from 'react-router-dom'
 
 import { AppShell } from '@/components/layout/app-shell'
 import { HomePage } from '@/pages/home/ui/home-page'
 import { RaceConditionPage } from '@/pages/learning/ui/race-condition-page'
 import { UseQueryLifecyclePage } from '@/pages/learning/ui/use-query-lifecycle-page'
 
-export const router = createBrowserRouter([
+function normalizeBasename(pathname: string) {
+  const withLeadingSlash = pathname.startsWith('/') ? pathname : `/${pathname}`
+  const withoutTrailingSlash = withLeadingSlash.replace(/\/+$/, '')
+
+  return withoutTrailingSlash || '/'
+}
+
+export function getRouterBasename(baseUrl: string) {
+  const trimmedBaseUrl = baseUrl.trim()
+
+  if (!trimmedBaseUrl) {
+    return '/'
+  }
+
+  try {
+    return normalizeBasename(new URL(trimmedBaseUrl, 'https://example.com').pathname)
+  } catch {
+    return normalizeBasename(trimmedBaseUrl)
+  }
+}
+
+export const appRoutes = [
   {
     path: '/',
     element: <AppShell />,
@@ -24,4 +45,8 @@ export const router = createBrowserRouter([
       },
     ],
   },
-])
+] satisfies RouteObject[]
+
+export const router = createBrowserRouter(appRoutes, {
+  basename: getRouterBasename(import.meta.env.BASE_URL),
+})
