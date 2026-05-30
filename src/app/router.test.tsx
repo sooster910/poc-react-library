@@ -19,13 +19,17 @@ describe('appRoutes', () => {
     const basename = getRouterBasename('/poc-react-library/')
     const matches = matchRoutes(appRoutes, '/poc-react-library/', basename)
 
-    expect(matches?.at(-1)?.pathname).toBe('/poc-react-library/')
+    expect(matches?.at(-1)?.pathname).toBe('/')
   })
 
   it('matches nested learning routes under the configured basename', () => {
     const basename = getRouterBasename('/poc-react-library/')
     const matches = matchRoutes(appRoutes, '/poc-react-library/learning/race-condition', basename)
 
-    expect(matches?.at(-1)?.pathname).toBe('/poc-react-library/learning/race-condition')
+    expect(matches?.at(-1)?.pathname).toBe('/learning/race-condition')
+  })
+
+  it('does not match GitHub Pages URLs without the deployment basename', () => {
+    expect(matchRoutes(appRoutes, '/poc-react-library/')).toBeNull()
   })
 })
