@@ -13,7 +13,8 @@ describe('app router', () => {
     const basename = getRouterBasename('/poc-react-library/')
     const matches = matchRoutes(appRoutes, { pathname: '/poc-react-library/' }, basename)
 
-    expect(matches?.at(-1)?.route.index).toBe(true)
+    expect(matches).toHaveLength(2)
+    expect(matches?.at(-1)?.pathname).toBe('/poc-react-library/')
   })
 
   it('prefixes navigation links with the deployment subpath', () => {
