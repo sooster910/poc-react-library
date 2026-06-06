@@ -12,9 +12,10 @@ describe('app router', () => {
   it('matches the home route when the app is served from a GitHub Pages subpath', () => {
     const basename = getRouterBasename('/poc-react-library/')
     const matches = matchRoutes(appRoutes, { pathname: '/poc-react-library/' }, basename)
+    const homeRoute = appRoutes[0].children[0]
 
     expect(matches).toHaveLength(2)
-    expect(matches?.at(-1)?.pathname).toBe('/poc-react-library/')
+    expect(matches?.at(-1)?.route).toBe(homeRoute)
   })
 
   it('prefixes navigation links with the deployment subpath', () => {
