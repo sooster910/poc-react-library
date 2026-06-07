@@ -8,9 +8,7 @@ describe('getRouterBasename', () => {
   it('normalizes Vite base paths for React Router', () => {
     expect(getRouterBasename('/')).toBe('/')
     expect(getRouterBasename('/poc-react-library/')).toBe('/poc-react-library')
-    expect(getRouterBasename('https://example.com/poc-react-library/')).toBe(
-      '/poc-react-library',
-    )
+    expect(getRouterBasename('https://example.com/poc-react-library/')).toBe('/poc-react-library')
   })
 })
 
@@ -24,10 +22,7 @@ describe('createAppRouter', () => {
 
     render(<RouterProvider router={createAppRouter('/poc-react-library/')} />)
 
-    expect(screen.getByRole('link', { name: 'Home' })).toHaveAttribute(
-      'href',
-      '/poc-react-library/',
-    )
+    expect(screen.getByRole('link', { name: 'Home' })).toHaveAttribute('href', '/poc-react-library')
     expect(screen.getByRole('link', { name: 'Race Condition Lab' })).toHaveAttribute(
       'href',
       '/poc-react-library/learning/race-condition',
