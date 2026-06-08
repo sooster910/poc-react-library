@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom/vitest'
 import { render, screen } from '@testing-library/react'
-import { afterEach, describe, expect, it } from 'vitest'
 import { RouterProvider } from 'react-router-dom'
+import { afterEach, describe, expect, it } from 'vitest'
 
 import { createAppRouter, getRouterBasename } from '@/app/router'
 
