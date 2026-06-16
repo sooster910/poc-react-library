@@ -37,7 +37,9 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Build
-        run: VITE_BASE_PATH="/${GITHUB_REPOSITORY#*/}/" pnpm run build
+        run: |
+          VITE_BASE_PATH="/${GITHUB_REPOSITORY#*/}/" pnpm run build
+          cp dist/index.html dist/404.html
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
