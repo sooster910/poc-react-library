@@ -9,12 +9,14 @@ export function AppProviders({ children }: PropsWithChildren) {
     <QueryClientProvider client={queryClient}>
       {children}
 
-      <ReactQueryDevtools
-        client={queryClient}
-        initialIsOpen={true}
-        buttonPosition="bottom-left"
-        position="bottom"
-      />
+      {import.meta.env.DEV && (
+        <ReactQueryDevtools
+          client={queryClient}
+          initialIsOpen={false}
+          buttonPosition="bottom-left"
+          position="bottom"
+        />
+      )}
     </QueryClientProvider>
   )
 }
