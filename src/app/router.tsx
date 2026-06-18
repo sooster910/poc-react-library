@@ -31,9 +31,10 @@ export function getRouterBasename(baseUrl: string) {
     return undefined
   }
 
-  const pathname = baseUrl.startsWith('http://') || baseUrl.startsWith('https://')
-    ? new URL(baseUrl).pathname
-    : baseUrl
+  const pathname =
+    baseUrl.startsWith('http://') || baseUrl.startsWith('https://')
+      ? new URL(baseUrl).pathname
+      : baseUrl
   const normalizedPathname = pathname.startsWith('/') ? pathname : `/${pathname}`
   const basename = normalizedPathname.replace(/\/+$/, '')
 
