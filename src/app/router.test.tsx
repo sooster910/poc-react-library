@@ -19,9 +19,6 @@ describe('router', () => {
     render(<RouterProvider router={router} />)
 
     expect(screen.getByText('프론트엔드 학습과 실험을 위한 기본 프로젝트')).toBeInTheDocument()
-    expect(screen.getByRole('link', { name: 'Home' })).toHaveAttribute(
-      'href',
-      '/poc-react-library/',
-    )
+    expect(screen.getByRole('link', { name: 'Home' })).toHaveAttribute('href', '/poc-react-library')
   })
 })
