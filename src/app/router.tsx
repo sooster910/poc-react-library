@@ -12,9 +12,7 @@ export function getRouterBasename(baseUrl: string) {
     return undefined
   }
 
-  return normalizedBaseUrl.endsWith('/')
-    ? normalizedBaseUrl.slice(0, -1)
-    : normalizedBaseUrl
+  return normalizedBaseUrl.endsWith('/') ? normalizedBaseUrl.slice(0, -1) : normalizedBaseUrl
 }
 
 export const appRoutes = [
