@@ -1,5 +1,5 @@
-import { createBrowserRouter } from 'react-router-dom'
 import type { RouteObject } from 'react-router-dom'
+import { createBrowserRouter } from 'react-router-dom'
 
 import { AppShell } from '@/components/layout/app-shell'
 import { HomePage } from '@/pages/home/ui/home-page'
