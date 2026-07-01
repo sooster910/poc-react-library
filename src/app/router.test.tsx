@@ -29,9 +29,6 @@ describe('router basename', () => {
       'href',
       '/poc-react-library/learning/race-condition',
     )
-    expect(screen.getByRole('link', { name: 'Home' })).toHaveAttribute(
-      'href',
-      '/poc-react-library/',
-    )
+    expect(screen.getByRole('link', { name: 'Home' })).toHaveAttribute('href', '/poc-react-library')
   })
 })
