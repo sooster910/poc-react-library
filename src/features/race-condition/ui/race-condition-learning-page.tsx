@@ -115,19 +115,35 @@ function AvoidRaceCondition() {
   const [activeCategory, setActiveCategory] = useState<CategoryId>('clothing')
   const [renderedCategory, setRenderedCategory] = useState<CategoryId>('clothing')
   const [products, setProducts] = useState<ProductCard[]>([])
+  const [isPlaying, setIsPlaying] = useState(false)
+
   useEffect(() => {
+    let ignore = false
+
     getProductsByCategory(activeCategory).then((nextProducts) => {
+      if (ignore) {
+        return
+      }
+
       setProducts(nextProducts)
       setRenderedCategory(activeCategory)
     })
+
+    return () => {
+      ignore = true
+    }
   }, [activeCategory])
-  function handleAvoidRaceCondition() {
+
+  async function replayRace() {
+    setIsPlaying(true)
     setActiveCategory('clothing')
-    getProductsByCategory(activeCategory).then((nextProducts) => {
-      setProducts(nextProducts)
-      setRenderedCategory(activeCategory)
-    })
+    await sleep(120)
+    setActiveCategory('shoes')
+    await sleep(120)
+    setActiveCategory('hats')
+    setIsPlaying(false)
   }
+
   return (
     <LessonCard tone="safe">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
@@ -152,7 +168,8 @@ function AvoidRaceCondition() {
         <button
           type="button"
           className="rounded-[14px] bg-gradient-to-br from-orange-400 to-orange-300 px-4 py-3 font-extrabold text-[#2f1307] disabled:cursor-not-allowed disabled:opacity-70"
-          onClick={handleAvoidRaceCondition}
+          onClick={replayRace}
+          disabled={isPlaying}
         >
           의류 → 신발 → 모자 빠르게 재현
         </button>
